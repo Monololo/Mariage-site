@@ -13,10 +13,8 @@
      FORMULAIRE — page unique
      ============================================================ -->
 <div id="form-container">
-  <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST" autocomplete="off">
+  <form id="rsvp-form" action="https://formbold.com/s/3dJxx" method="POST" autocomplete="off">
 
-    <input type="hidden" name="access_key" value="70844ea2-02ba-4b14-b611-c4b241e174a0">
-    <input type="hidden" name="subject" value="Nouvelle réponse mariage Emeline & Emilien">
     <input type="hidden" name="version" id="input-version" value="a">
 
 <header class="entete">
@@ -37,11 +35,10 @@
     <!-- ---------- BLOC 1 : LES INVITÉS ---------- -->
     <section class="cadre" id="bloc-invites">
       <h2>T'es qui toi ?</h2>
-        <p class="intro-bloc">
+      <p class="intro-bloc">
         La tache peut vous paraitre un peu longue mais ça nous aiderai beaucoup. On a besoin d'une fiche par personne. Une fois que vous avez rempli votre fiche vous pouvez utilisez le bouton en bas +Ajouter une personne pour en ajouter une nouvelle. Les informations du style téléphone et email ne sont pas vitales mais seront plus facile à réutiliser pour vous envoyer des infos complémentaires ou vous partager les photos de l'événement.
-        </p>
-        <br>
-        <p>Nous vous rappelons que les enfants ne sont pas invités sauf cas exeptionnel. Appeler nous si c'est le cas</p>
+      </p>
+<p>Nous vous rappelons que les enfants ne sont pas invités sauf cas exeptionnel. Appeler nous si c'est le cas</p>
       <div id="personnes-container">
 
         <!-- ===== FICHE 1 (toujours visible) ===== -->
@@ -87,11 +84,11 @@
             <label for="p1_presence">Tu viens ou tu viens pas ?</label>
             <select id="p1_presence" name="p1_presence" class="select-presence" required>
               <option value="">— Choisir —</option>
-              <option value="absent"                       >Absent(e), hélas. J'ai aquaponey</option>
-              <option value="vin"     data-versions="a b c">Vin d'honneur uniquement</option>
-              <option value="soir"    data-versions="a b"  >Vin d'honneur + soirée</option>
-              <option value="journee" data-versions="a"    >Toute la journée,</option>
-              <option value="retour"  data-versions="a"    >La journée et le lendemain</option>
+              <option value="absent">Absent(e), hélas. J'ai aquaponey</option>
+              <option value="vin"    data-versions="a b c">Vin d'honneur uniquement</option>
+              <option value="soir"   data-versions="a b">Vin d'honneur + soirée</option>
+              <option value="journee" data-versions="a">Toute la journée,</option>
+              <option value="retour"  data-versions="a">La journée et le lendemain</option>
             </select>
           </div>
 
@@ -100,14 +97,13 @@
             <div class="champ">
               <label for="p1_regime">Des restrictions alimentaires ?</label>
               <select id="p1_regime" name="p1_regime">
-                <option value=""         >— Choisir —</option>
-                <option value="aucune"   >Non, je mange de tout</option>
+                <option value="aucune">Non, je mange de tout</option>
                 <option value="cannibale">Cannibale</option>
-                <option value="vege"     >Végétarien</option>
-                <option value="vegan"    >Vegan</option>
-                <option value="kasher"   >Kasher</option>
-                <option value="hallal"   >Hallal</option>
-                <option value="demander" >Demander à ma femme</option>
+                <option value="vege">Végétarien</option>
+                <option value="vegan">Vegan</option>
+                <option value="kasher">Kasher</option>
+                <option value="hallal">Hallal</option>
+                <option value="demander">Demander à ma femme</option>
               </select>
             </div>
             <div class="champ">
@@ -123,9 +119,9 @@
               <label for="p1_logement">Besoin d'un hébergement ?</label>
               <p>On peut vous aider à trouver un logement, en fonction du nombre on peut trouver des solutions, mais on reprendra contact avec les intéressés.</p>
               <select id="p1_logement" name="p1_logement">
-                <option value=""   >— Choisir —</option>
                 <option value="non">Non merci</option>
                 <option value="oui">Oui</option>
+                <option value="peutetre">Peut-être</option>
               </select>
             </div>
           </div>
@@ -137,6 +133,7 @@
       <option value="">— Choisir —</option>
       <option value="non">Non, désolé</option>
       <option value="oui">Oui, avec plaisir</option>
+      <option value="peutetre">Peut-être, dites-moi ce qu'il faut faire</option>
     </select>
   </div>
   <div class="ligne-2col">
@@ -145,16 +142,16 @@
        <input type="text" id="p1_chanson1" name="p1_chanson1" placeholder="Titre — Artiste">
      </div>
       <div class="champ">
-        <label for="p1_chanson2">Une autre ! une autre !</label>
+        <label for="p1_chanson2">Une deuxième chanson</label>
        <input type="text" id="p1_chanson2" name="p1_chanson2" placeholder="Titre — Artiste">
      </div>
     </div>
   </div>
-</div>
+          <button type="button" class="btn-supprimer" aria-label="Supprimer cette personne">- Supprimer cette personne</button>
         <!-- ===== FIN FICHE 1 ===== -->
 
         <!-- Les fiches 2 à 8 sont clonées en JS depuis la fiche 1 [LOT 1] -->
-<button type="button" class="btn-supprimer hidden" aria-label="Supprimer cette personne">✕ Supprimer cette personne</button>
+
       </div>
 
       <button type="button" id="btn-ajouter">+ Ajouter une personne</button>
@@ -191,6 +188,7 @@
 </div>
 
 <script src="script.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
