@@ -141,13 +141,16 @@ const ETATS_GUIDE = {
   defaut:  { pere: 'images/pereparici.png',   mere: 'images/mereparici.png' },
   licorne: { pere: 'images/perelicorne.png',  mere: 'images/merelicorne.png' },
   nain:    { pere: 'images/perenain.png',     mere: 'images/merenaine.png' },
-  regime:  { pere: 'images/enfantvegan.png',  mere: 'images/enfantvegan.png' },
+  regime:  { pere: 'images/fillevegan.png',  mere: 'images/filsvegan.png' },
   aquaponey:  { pere: 'images/filleaquaponey.png',  mere: 'images/filsaquaponey.png' },
-  chanson: { pere: 'images/peredanse.gif',    mere: 'images/chatclac.gif' }
+  chanson: { pere: 'images/peredanse.gif',    mere: 'images/chatclac.gif' },
+  logement:{ pere: 'images/fillelogement.png', mere: 'images/filslogement.png' }, // AJOUT
+  moqueur: { pere: 'images/fillemoqueur.png',  mere: 'images/filsmoqueur.png' },
 };
 
 let regimeActif = false;
-
+let logementActif = false;
+let moqueurActif = false;
 // Vrai des qu'au moins une fiche a le genre "licorne"
 function licorneChoisie() {
   return Array.from(document.querySelectorAll('#personnes-container [id$="_genre"]'))
@@ -167,7 +170,9 @@ function majGuides() {
   ).some(input => input.value.trim().length > 0);
 
   let etat = 'defaut';
-  if      (regimeActif)      etat = 'regime';
+  if      (moqueurActif)     etat = 'moqueur';
+  else if (regimeActif)      etat = 'regime';
+  else if (logementActif)    etat = 'logement';
   else if (chansonRemplie)   etat = 'chanson';
   else if (aquaponeyChoisi())   etat = 'aquaponey';
   else if (nainChoisie())    etat = 'nain';
@@ -185,7 +190,18 @@ const guideFille = document.getElementById('guide-fille');
 function brancherGuide(fiche) {
   const selectGenre = fiche.querySelector('[id$="_genre"]');
   if (selectGenre) selectGenre.addEventListener('change', majGuides);
-
+  // AJOUT : logement
+  const selectLogement = fiche.querySelector('[id$="_logement"]');
+  if (selectLogement) {
+    selectLogement.addEventListener('focus', () => {
+      logementActif = true;
+      majGuides();
+    });
+    selectLogement.addEventListener('blur', () => {
+      logementActif = false;
+      majGuides();
+    });
+  }
   const selectRegime = fiche.querySelector('[id$="_regime"]');
   if (!selectRegime) return;
 
@@ -195,6 +211,10 @@ function brancherGuide(fiche) {
   });
   selectRegime.addEventListener('blur', () => {
     regimeActif = false;
+    majGuides();
+  });
+  selectRegime.addEventListener('change', () => {
+    moqueurActif = (selectRegime.value === 'demander');
     majGuides();
   });
 }

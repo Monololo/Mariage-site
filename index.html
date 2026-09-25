@@ -13,10 +13,11 @@
      FORMULAIRE — page unique
      ============================================================ -->
 <div id="form-container">
-  <form id="rsvp-form" action="https://formbold.com/s/3dJxx" method="POST" autocomplete="off">
+  <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST" autocomplete="off">
 
+    <input type="hidden" name="access_key" value="70844ea2-02ba-4b14-b611-c4b241e174a0">
+    <input type="hidden" name="subject" value="Nouvelle réponse mariage Emeline & Emilien">
     <input type="hidden" name="version" id="input-version" value="a">
-
 <header class="entete">
   <h1>
     <span class="ligne-mobile">Emeline<br>&<br>Emilien<br>se marient</span>
@@ -38,6 +39,7 @@
       <p class="intro-bloc">
         La tache peut vous paraitre un peu longue mais ça nous aiderai beaucoup. On a besoin d'une fiche par personne. Une fois que vous avez rempli votre fiche vous pouvez utilisez le bouton en bas +Ajouter une personne pour en ajouter une nouvelle. Les informations du style téléphone et email ne sont pas vitales mais seront plus facile à réutiliser pour vous envoyer des infos complémentaires ou vous partager les photos de l'événement.
       </p>
+      <br>
 <p>Nous vous rappelons que les enfants ne sont pas invités sauf cas exeptionnel. Appeler nous si c'est le cas</p>
       <div id="personnes-container">
 
@@ -97,6 +99,7 @@
             <div class="champ">
               <label for="p1_regime">Des restrictions alimentaires ?</label>
               <select id="p1_regime" name="p1_regime">
+                <option value="">— Choisir —</option>
                 <option value="aucune">Non, je mange de tout</option>
                 <option value="cannibale">Cannibale</option>
                 <option value="vege">Végétarien</option>
