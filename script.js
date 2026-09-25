@@ -151,32 +151,49 @@ const ETATS_GUIDE = {
 let regimeActif = false;
 let logementActif = false;
 let moqueurActif = false;
+let ficheActive = null;
+
+function activerFiche(fiche) {
+  ficheActive = fiche;
+}
+
+function reinitialiserGuide(fiche) {
+  activerFiche(fiche);
+  regimeActif = false;
+  logementActif = false;
+  moqueurActif = false;
+  majGuides();
+}
 // Vrai des qu'au moins une fiche a le genre "licorne"
 function licorneChoisie() {
-  return Array.from(document.querySelectorAll('#personnes-container [id$="_genre"]'))
-              .some(select => select.value === 'licorne');
+  if (!ficheActive) return false;
+  const s = ficheActive.querySelector('[id$="_genre"]');
+  return s && s.value === 'licorne';
 }
 function nainChoisie() {
-  return Array.from(document.querySelectorAll('#personnes-container [id$="_genre"]'))
-              .some(select => select.value === 'nain');
+  if (!ficheActive) return false;
+  const s = ficheActive.querySelector('[id$="_genre"]');
+  return s && s.value === 'nain';
 }
 function aquaponeyChoisi() {
-  return Array.from(document.querySelectorAll('.select-presence'))
-              .some(select => select.value === 'absent');
+  if (!ficheActive) return false;
+  const s = ficheActive.querySelector('.select-presence');
+  return s && s.value === 'absent';
 }
 function majGuides() {
-  const chansonRemplie = Array.from(
-    document.querySelectorAll('[id$="_chanson1"], [id$="_chanson2"]')
-  ).some(input => input.value.trim().length > 0);
+  const chansonRemplie = ficheActive
+  ? Array.from(ficheActive.querySelectorAll('[id$="_chanson1"], [id$="_chanson2"]'))
+      .some(input => input.value.trim().length > 0)
+  : false;
 
   let etat = 'defaut';
-  if      (moqueurActif)     etat = 'moqueur';
-  else if (regimeActif)      etat = 'regime';
-  else if (logementActif)    etat = 'logement';
-  else if (chansonRemplie)   etat = 'chanson';
-  else if (aquaponeyChoisi())   etat = 'aquaponey';
-  else if (nainChoisie())    etat = 'nain';
-  else if (licorneChoisie()) etat = 'licorne';
+  if      (moqueurActif)      etat = 'moqueur';
+  else if (regimeActif)       etat = 'regime';
+  else if (logementActif)     etat = 'logement';
+  else if (chansonRemplie)    etat = 'chanson';
+  else if (aquaponeyChoisi()) etat = 'aquaponey';
+  else if (nainChoisie())     etat = 'nain';
+  else if (licorneChoisie())  etat = 'licorne';
 
   if (guidePere) guidePere.src = ETATS_GUIDE[etat].pere;
   if (guideMere) guideMere.src = ETATS_GUIDE[etat].mere;
@@ -188,6 +205,8 @@ const guideFille = document.getElementById('guide-fille');
 }
 
 function brancherGuide(fiche) {
+  // La fiche devient active dès qu'on interagit avec elle
+  fiche.addEventListener('focusin', () => activerFiche(fiche));
   const selectGenre = fiche.querySelector('[id$="_genre"]');
   if (selectGenre) selectGenre.addEventListener('change', majGuides);
   // AJOUT : logement
@@ -217,7 +236,10 @@ function brancherGuide(fiche) {
     moqueurActif = (selectRegime.value === 'demander');
     majGuides();
   });
-}
+  selectRegime.addEventListener('blur', () => {
+    moqueurActif = false;
+    majGuides();
+  });}
 
 
 // --- Branchement des écouteurs sur une fiche ---------------------
@@ -227,20 +249,27 @@ function brancher(fiche) {
   const select = fiche.querySelector('.select-presence');
   if (select) {
     select.addEventListener('change', function () {
+      moqueurActif = false;  
       majConditionnels(fiche);
       majGuides();
     });
   }
 fiche.querySelectorAll('[id$="_chanson1"], [id$="_chanson2"]').forEach(input => {
-  input.addEventListener('input', majGuides);
+  input.addEventListener('input', () => { moqueurActif = false; 
+    majGuides(); 
+  });
 });
   const btnSup = fiche.querySelector('.btn-supprimer');
   if (btnSup) {
     btnSup.addEventListener('click', () => {
       fiche.remove();
       renumeroter();
-
-      majGuides(); // au cas où la fiche supprimée était la seule "licorne"
+      if (ficheActive === fiche) {
+        const restantes = container.querySelectorAll('.fiche-personne');
+        reinitialiserGuide(restantes[restantes.length - 1] || null);
+      } else {
+      majGuides();
+}
     });
   }
 }
@@ -261,7 +290,7 @@ fiche.querySelectorAll('[id$="_chanson1"], [id$="_chanson2"]').forEach(input => 
     container.appendChild(nouvelle);
     brancher(nouvelle);
     renumeroter();
-
+    reinitialiserGuide(nouvelle);
     nouvelle.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
@@ -400,6 +429,7 @@ function construirePayload() {
   if (inputVersion) inputVersion.value = version;
   filtrerPresence(modele);
   brancher(modele);
+  activerFiche(modele);
   majConditionnels(modele);
   renumeroter();
   majGuides();
