@@ -3,6 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
+  z-index: 10;
 }
 
 .hidden {
@@ -51,8 +53,11 @@
 body {
   font-family: 'CaviarDreams';
   text-align: justify;
+  text-shadow: 0.5px 0.5px 0 rgba(129, 130, 126, 0.73);
   font-size: clamp(0.8rem, 2vw, 1.2rem);
+  position: relative;
   z-index: 10;
+
 }
 
 h1 {
@@ -61,6 +66,7 @@ h1 {
   line-height: 1.2;
   font-size: clamp(2.4rem, 6.8vw, 2.8rem);
   z-index: 10;
+  position: relative;
 }
 
 #form-container {
@@ -78,6 +84,7 @@ h1 {
   text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
   z-index: 10;
   text-align: center;
+  position: relative;
 }
 header {
   font-family: 'CaviarDreams';
@@ -207,7 +214,7 @@ header {
     transform: translateY(-50%);
     width: 190px;
     z-index: 5;              /* derrière le formulaire */
-    opacity: 0.6;            /* discret en arrière-plan */
+    opacity: 0.4;            /* discret en arrière-plan */
     pointer-events: none;    /* les clics passent à travers */
   }
 

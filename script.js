@@ -138,14 +138,14 @@ const guidePere = document.getElementById('guide-pere');
 const guideMere = document.getElementById('guide-mere');
 
 const ETATS_GUIDE = {
-  defaut:  { pere: 'images/pereparici.png',   mere: 'images/mereparici.png' },
-  licorne: { pere: 'images/perelicorne.png',  mere: 'images/merelicorne.png' },
-  nain:    { pere: 'images/perenain.png',     mere: 'images/merenaine.png' },
-  regime:  { pere: 'images/fillevegan.png',  mere: 'images/filsvegan.png' },
-  aquaponey:  { pere: 'images/filleaquaponey.png',  mere: 'images/filsaquaponey.png' },
-  chanson: { pere: 'images/peredanse.gif',    mere: 'images/chatclac.gif' },
-  logement:{ pere: 'images/fillelogement.png', mere: 'images/filslogement.png' }, // AJOUT
-  moqueur: { pere: 'images/fillemoqueur.png',  mere: 'images/filsmoqueur.png' },
+  defaut:   { pere: 'images/pereparici.png',   mere: 'images/mereparici.png' },
+  licorne:  { pere: 'images/perelicorne.png',  mere: 'images/merelicorne.png' },
+  nain:     { pere: 'images/perenain.png',     mere: 'images/merenaine.png' },
+  regime:   { pere: 'images/fillevegan.png',  mere: 'images/filsvegan.png' },
+  aquaponey:{ pere: 'images/filleaquaponey.png',  mere: 'images/filsaquaponey.png' },
+  chanson:  { pere: 'images/peredanse.gif',    mere: 'images/chatclac.gif' },
+  logement: { pere: 'images/fillelogement.png', mere: 'images/filslogement.png' }, // AJOUT
+  moqueur:  { pere: 'images/fillemoqueur.png',  mere: 'images/filsmoqueur.png' },
 };
 
 let regimeActif = false;
