@@ -59,7 +59,9 @@ body {
   z-index: 10;
 
 }
-
+.intro-bloc {
+ text-align: center;
+}
 h1 {
   font-family: 'iloveyou'; /* hérite du header, cohérent */
   text-align: center;
